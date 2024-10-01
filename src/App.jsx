@@ -1,4 +1,4 @@
-import Profile from './components/reactFundamentals/ReactFundamentalsTask.js'
+import Profile from './components/reactFundamentals/ReactFundamentalsTask.jsx'
 
 function App() {
   return (
