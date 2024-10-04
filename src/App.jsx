@@ -1,11 +1,10 @@
-import Profile from './components/reactFundamentals/ReactFundamentalsTask.jsx'
+import CustomTabPanel from './components/useStateRendering/customTabPanel'
 
-function App() {
+export default function App() {
   return (
     <>
-      <Profile/>
+      <CustomTabPanel />
     </>
-  );
+  )
 }
 
-export default App;

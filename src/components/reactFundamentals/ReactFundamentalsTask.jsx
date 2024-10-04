@@ -3,7 +3,9 @@
 
 import { users } from './data.js'
 
-function UserProfile({ id, name, age, location, occupation }) {
+function UserProfile(user) {
+  const { id, name, age, location, occupation } = user.user
+
   return (
     <li key={id}>
       <p>
@@ -28,7 +30,7 @@ function ProfileList() {
     <div>
       <h1>Users Data:</h1>
       {users.map((user) => (
-        <UserProfile {...user} key={user.id} />
+        <UserProfile user={user} key={user.id} />
       ))}
     </div>
   )
