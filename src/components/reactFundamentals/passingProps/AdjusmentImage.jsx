@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 // Task 2 - Change the Avatar component to request the closest image size based on the size prop.
-import { getImageUrlByPersonAndSize } from './utils.js'
+
+import { getImageUrlByPersonAndSize } from "../utils"
 
 function Avatar({ person, size }) {
   let imageSize = size > 90 ? 'b' : 's'
@@ -14,7 +16,7 @@ function Avatar({ person, size }) {
   )
 }
 
-export default function Profile() {
+export const AdjustImage = () => {
   return (
     <Avatar
       size={120}

@@ -6,7 +6,7 @@ const poem = {
   lines: ['I write, erase, rewrite', 'Erase again, and then', 'A poppy blooms.'],
 }
 
-export default function Poem() {
+export const SeparatorList = () => {
   return (
     <article>
       {poem.lines.map((line, i) => (

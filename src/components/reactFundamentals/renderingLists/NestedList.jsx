@@ -2,7 +2,7 @@
 
 import { recipes } from '../data.js'
 
-export default function RecipeList() {
+export const NestedRecipeList = () => {
   return (
     <div>
       <h1>Recipes</h1>

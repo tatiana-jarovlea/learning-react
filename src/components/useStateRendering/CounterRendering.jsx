@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@mui/material'
 
-export const Counter = () => {
+export const CounterRendering = () => {
   const [count, addCount] = useState(0)
   const handleClick = () => addCount(count + 1)
 

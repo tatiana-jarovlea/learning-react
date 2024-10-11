@@ -1,6 +1,7 @@
 // Task 1 - Use the conditional operator (cond ? a : b) to render a ❌ if isPacked isn’t true.
 
-function Item({ name, isPacked }) {
+// eslint-disable-next-line react/prop-types
+function Item({name, isPacked}) {
   return (
     <li className="item">
       {name} {isPacked ? '✅' : '❌'}
@@ -8,10 +9,10 @@ function Item({ name, isPacked }) {
   )
 }
 
-export default function PackingList() {
+export const FlagRendering = () => {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Sally Rides Packing List</h1>
       <ul>
         <Item isPacked={true} name="Space suit" />
         <Item isPacked={true} name="Helmet with a golden leaf" />

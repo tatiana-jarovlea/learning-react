@@ -1,32 +1,11 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
-import { Counter } from './counterRendering'
-import { HiddenUsers } from './hiddenUsers'
-
-function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  )
-}
-
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-}
+import { CustomTabPanel } from 'components/utils/customTabPanel'
+import { HiddenUsers } from 'components/useStateRendering/HiddenUsers'
+import { CounterRendering } from 'components/useStateRendering/CounterRendering'
+import { Typography } from '@mui/material'
 
 function a11yProps(index) {
   return {
@@ -35,7 +14,7 @@ function a11yProps(index) {
   }
 }
 
-export default function BasicTabs() {
+const BasicTabs = () => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event, newValue) => {
@@ -46,17 +25,33 @@ export default function BasicTabs() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Counter Rendering" {...a11yProps(0)} />
+          <Tab label="Hidden Users" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <Counter />
+        <CounterRendering />
       </CustomTabPanel>
+
       <CustomTabPanel value={value} index={1}>
         <HiddenUsers />
       </CustomTabPanel>
     </Box>
   )
 }
+
+const Rendering = () => {
+  return (
+    <>
+      <Box sx={{ marginTop: '20px' }}>
+        <Typography variant="h2" align="center">
+          Rendering
+        </Typography>
+        <BasicTabs />
+      </Box>
+    </>
+  )
+}
+
+export default Rendering
 

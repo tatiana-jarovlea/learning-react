@@ -36,7 +36,7 @@ function ProfileList() {
   )
 }
 
-export default function Profile() {
+export const ReactFundamentalsTask = () => {
   return <ProfileList />
 }
 

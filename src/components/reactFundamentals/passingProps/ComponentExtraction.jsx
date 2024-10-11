@@ -1,9 +1,9 @@
-// Task 1
-// This Gallery component contains some very similar markup for two profiles.
-// Extract a Profile component out of it to reduce the duplication.
-// You’ll need to choose what props to pass to it.
+/* eslint-disable react/prop-types */
 
-import { getImageUrl } from './utils.js'
+// Task 1
+// Extract a Profile component out of it to reduce the duplication.
+
+import { getImageUrl } from "../utils"
 
 function Profile({ name, imageUrl, profession, awards, discovered }) {
   return (
@@ -29,7 +29,7 @@ function Profile({ name, imageUrl, profession, awards, discovered }) {
   )
 }
 
-export default function Gallery() {
+export const Gallery = () => {
   return (
     <div>
       <h1>Notable Scientists</h1>

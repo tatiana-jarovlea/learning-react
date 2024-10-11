@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 //Task 3 - Extract a Card component from the markup below, and use the children prop to pass different JSX to it
 
 function Card({ children }) {
@@ -8,7 +9,7 @@ function Card({ children }) {
   )
 }
 
-export default function Profile() {
+export const PassingJsx = () => {
   return (
     <div>
       <Card>

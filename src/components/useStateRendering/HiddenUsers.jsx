@@ -1,9 +1,9 @@
-import Profile from '../reactFundamentals/ReactFundamentalsTask'
 import { useState } from 'react'
 import Switch from '@mui/material/Switch'
+import { ReactFundamentalsTask } from 'components/reactFundamentals/ReactFundamentalsTask'
 
 export const HiddenUsers = () => {
-  const [isChecked, setCheckedUsers] = useState(false)
+  const [isChecked, setCheckedUsers] = useState(true)
 
   const handleChange = () => {
     setCheckedUsers(!isChecked)
@@ -12,7 +12,7 @@ export const HiddenUsers = () => {
   return (
     <div>
       <Switch checked={isChecked} onChange={handleChange} />
-      {isChecked && <Profile />}
+      {isChecked && <ReactFundamentalsTask />}
     </div>
   )
 }

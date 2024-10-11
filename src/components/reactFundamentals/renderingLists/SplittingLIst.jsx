@@ -3,7 +3,7 @@
 import { people } from '../data.js'
 import { getImageUrlByPerson } from '../utils.js'
 
-export default function List() {
+export const SplitList = () => {
   const chemists = people.filter((person) => person.profession === 'chemist')
   const others = people.filter((person) => person.profession !== 'chemist')
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // Task 3 - Extracting a list item component
 
 import { recipes } from '../data.js'
@@ -15,7 +16,7 @@ function Recipe({ id, name, ingredients }) {
   )
 }
 
-export default function RecipeList() {
+export const RecipeList = () => {
   return (
     <div>
       <h1>Recipes</h1>
