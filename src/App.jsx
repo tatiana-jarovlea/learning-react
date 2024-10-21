@@ -6,6 +6,7 @@ import Fundamentals from 'pages/Fundamentals'
 import NoPage from 'pages/NoPage'
 import Rendering from 'pages/Rendering'
 import Hook from 'pages/Hook'
+import { Forms } from 'pages/Forms'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="fundamentals" element={<Fundamentals />} />
           <Route path="rendering" element={<Rendering />} />
           <Route path="hook" element={<Hook />} />
+          <Route path="forms" element={<Forms />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

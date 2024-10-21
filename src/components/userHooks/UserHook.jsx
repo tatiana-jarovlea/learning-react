@@ -6,6 +6,7 @@ const GetUsersHooks = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
+    setIsLoading(true)
     fetch('https://dummyjson.com/users/?limit=20')
       .then((response) => response.json())
       .then((json) => {
@@ -26,7 +27,7 @@ const GetUsersHooks = () => {
               </ListItemAvatar>
 
               <ListItemText
-                primary={user.firstName + ' ' + user.lastName + user.maidenName}
+                primary={user.firstName + ' ' + user.lastName + ' ' + user.maidenName}
                 secondary={
                   <Fragment>
                     <Typography component="span" variant="body2" sx={{ color: 'text.primary', display: 'inline' }}>

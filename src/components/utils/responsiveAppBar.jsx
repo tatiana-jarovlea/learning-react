@@ -9,7 +9,7 @@ import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 
-const pages = ['fundamentals', 'rendering', 'hook']
+const pages = ['fundamentals', 'rendering', 'hook', 'forms']
 
 export const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
