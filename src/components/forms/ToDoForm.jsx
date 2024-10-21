@@ -59,24 +59,24 @@ const ToDoList = () => {
   return (
     <>
       <Box sx={{ marginLeft: '20px' }}>
-        <Typography> To Do List: </Typography>
-
         <form onSubmit={entryToEdit ? handleEdit : handleSave}>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Title </label>
           <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} />
           <br />
           <br />
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">Description </label>
           <input type="text" id="description" name="description" value={formData.description} onChange={handleChange} />
           <br />
           <br />
-          <label htmlFor="status">Status</label>
+          <label htmlFor="status">Status </label>
           <input type="checkbox" name="status" checked={formData.status} onChange={handleChange} />
           <br />
           <br />
           <button type="submit">{entryToEdit ? 'Update entry' : 'Save entry'}</button>
         </form>
       </Box>
+      <br />
+      <Typography> To Do List: </Typography>
       <FormList entries={entries} setEntries={setEntries} setEntryToEdit={setEntryToEdit} />
     </>
   )
@@ -114,6 +114,7 @@ export const ToDoForm = () => {
     <>
       <Box sx={{ marginLeft: '20px' }}>
         <Typography variant="h5"> Create a to-do list</Typography>
+        <br />
         <ToDoList />
       </Box>
     </>
