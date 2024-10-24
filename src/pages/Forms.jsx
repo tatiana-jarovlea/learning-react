@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { ToDoForm } from 'components/forms/ToDoForm'
+import { ToDoForm } from 'components/reactForms/ToDoForm'
 
 export const Forms = () => {
   return (
