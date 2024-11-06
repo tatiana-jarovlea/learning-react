@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { ToDoProvider } from 'components/reactForms/ToDoContext'
+import { ToDoProvider } from 'contexts/ToDoContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

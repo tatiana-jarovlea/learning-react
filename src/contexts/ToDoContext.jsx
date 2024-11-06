@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useState } from 'react'
 
-const ToDoContext = createContext()
+export const ToDoContext = createContext(null)
 
 export const ToDoProvider = ({ children }) => {
   const [todoList, setTodoList] = useState([])
@@ -22,8 +22,3 @@ export const ToDoProvider = ({ children }) => {
 
   return <ToDoContext.Provider value={{ todoList, addTodo, removeTodo, updateTodo }}>{children}</ToDoContext.Provider>
 }
-
-export const useToDo = () => {
-  return useContext(ToDoContext)
-}
-
