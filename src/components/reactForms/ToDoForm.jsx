@@ -1,7 +1,7 @@
 import { Box, Button, TextField, MenuItem, Select, Typography, InputLabel, FormControl } from '@mui/material'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import { ToDoList } from './ToDoList'
-import { useToDo } from 'components/hooks/ToDoHook'
 
 const DEFAULT_TODO_ITEM = {
   id: NaN,
@@ -17,25 +17,62 @@ const STATUS_ITEMS = [
 ]
 
 export const ToDoForm = () => {
-  const { todoList, addTodo, removeTodo, updateTodo } = useToDo()
+  const [todoList, setTodoList] = useState([]) // Задачи из API
   const [todo, setTodo] = useState(DEFAULT_TODO_ITEM)
   const [isEditing, setIsEditing] = useState(false)
+
+  // Загружаем список задач с сервера
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/todos')
+      .then(response => {
+        // Преобразуем данные для корректного отображения
+        const transformedData = response.data.map(todo => ({
+          ...todo,
+          description: todo.description || '', // Убедимся, что описание — пустая строка, если оно undefined
+          status: todo.completed ? 'Done' : 'New' // Статус: 'Done' для true, 'New' для false
+        }))
+        setTodoList(transformedData)
+      })
+      .catch(error => {
+        console.error("There was an error fetching the todo list!", error)
+      })
+  }, [])
 
   const handleSave = (event) => {
     event.preventDefault()
 
+    // Преобразуем статус перед сохранением
+    const statusForSave = todo.status === 'Done'
+
     if (isEditing) {
-      updateTodo(todo) // Pass the complete todo object
-      setIsEditing(false)
+      axios.put(`https://jsonplaceholder.typicode.com/todos/${todo.id}`, {
+        ...todo,
+        completed: statusForSave,
+      })
+        .then(response => {
+          setTodoList((prevList) =>
+            prevList.map((item) => (item.id === todo.id ? response.data : item))
+          )
+          setIsEditing(false)
+          setTodo(DEFAULT_TODO_ITEM) // Reset form
+        })
+        .catch(error => {
+          console.error("Error updating the todo", error)
+        })
     } else {
-      addTodo({
+      axios.post('https://jsonplaceholder.typicode.com/todos', {
         title: todo.title,
         description: todo.description,
-        status: todo.status,
+        completed: statusForSave,
       })
+        .then(response => {
+          setTodoList((prevList) => [...prevList, response.data])
+          setTodo(DEFAULT_TODO_ITEM) // Reset form
+        })
+        .catch(error => {
+          console.error("Error adding the todo", error)
+        })
     }
-
-    setTodo(DEFAULT_TODO_ITEM) // Reset form
   }
 
   const handleInputChange = (event) => {
@@ -59,6 +96,16 @@ export const ToDoForm = () => {
     setTodo(todoToUpdate)
   }
 
+  const handleRemove = (id) => {
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(() => {
+        setTodoList((prevList) => prevList.filter(todo => todo.id !== id))
+      })
+      .catch(error => {
+        console.error("Error deleting the todo", error)
+      })
+  }
+
   return (
     <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: 'center', gap: '80px' }}>
       <Box sx={{ marginLeft: '20px', width: '50%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -74,7 +121,6 @@ export const ToDoForm = () => {
         />
         <TextField
           fullWidth
-          required
           label="Description"
           type="text"
           name="description"
@@ -101,8 +147,7 @@ export const ToDoForm = () => {
           Save
         </Button>
       </Box>
-      <ToDoList todoList={todoList} removeTodo={removeTodo} updateTodo={handleEdit} />
+      <ToDoList todoList={todoList} removeTodo={handleRemove} updateTodo={handleEdit} />
     </Box>
   )
 }
-
